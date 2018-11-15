@@ -1,6 +1,11 @@
-var express = require("express");
-var route = require("./route/route");
-var app = express();
+var express = require("express"),
+    route = require("./route/route"),
+    parser= require("body-parser");
+    app = express();
+//var request = url.parse(req.url, true);
 
+
+app.use(parser.json());
 app.use('/api/', route);
-app.listen(7500);
+app.use(express.static('public'));
+app.listen(8000);
