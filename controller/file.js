@@ -1,17 +1,60 @@
-const response = [{username: "rinju",
-                        age: 20}];
+const Response = require('./../model/model');
 
+let response;
 
-exports.postfunction = function (req, res) {
-    
-    response.push({username: req.body.username,
-                    age: req.body.age
-                });
+//create data controller
+exports.create_data = function (req, res) {
 
-        res.json({message:"posted"});
+    response = new Response(
+        {
+            username: req.body.username,
+            age: req.body.age
+        }
+    );
+
+    response.save(function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.send('Product Created successfully')
+    })
 }; 
 
-exports.getfunction = function (req, res) {
-    res.json(response);
 
+//get all the database stored values
+exports.retrieve_all = function (req, res) {
+
+    Response.find(function (err, response) {
+        if (err) return next(err);
+        res.send(response);         //only current posted value is retrieved. still working on get field
+    })
+};
+
+
+//get one stored value by ID
+exports.retrieve_one = function (req, res) {
+
+    Response.findById(req.params.id, function (err, response) {
+        if (err) return next(err);
+        res.send(response);         //only current posted value is retrieved. still working on get field
+    })
+};
+
+
+//update the database stored value by ID
+exports.update_data = function (req, res) {
+    Response.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
+        if (err) return next(err);
+        res.send('Product udpated.');
+    
+    });
+};
+
+
+//delete database stored values by ID
+exports.delete_data = function (req, res) {
+    Response.findByIdAndRemove(req.params.id, function (err) {
+        if (err) return next(err);
+        res.send('Deleted successfully!');
+    })
 };
