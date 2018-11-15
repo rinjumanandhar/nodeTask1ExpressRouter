@@ -1,16 +1,20 @@
 var express = require("express"),
     app = express();
 
+const response = [{username: "rinju",
+                        age: 20}];
+
+
 exports.postfunction = function (req, res) {
-    const response = {
-        username: req.body,
-        age: req.body
-    };
-    //console.log(req.body);
-    res.send(JSON.stringify(response));
+    
+    response.push({username: req.body.username,
+                    age: req.body.age
+                });
+
+        res.json({message:"posted"});
 }; 
 
 exports.getfunction = function (req, res) {
-    res.send("Hello and Welcome!!!");
+    res.json(response);
 
 };
