@@ -26,7 +26,7 @@ exports.retrieve_all = function (req, res) {
 
     Response.find(function (err, response) {
         if (err) return next(err);
-        res.send(response);         //only current posted value is retrieved. still working on get field
+        res.send(response);         
     })
 };
 
@@ -36,7 +36,7 @@ exports.retrieve_one = function (req, res) {
 
     Response.findById(req.params.id, function (err, response) {
         if (err) return next(err);
-        res.send(response);         //only current posted value is retrieved. still working on get field
+        res.send(response);         
     })
 };
 
