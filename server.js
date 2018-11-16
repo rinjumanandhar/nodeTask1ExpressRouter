@@ -1,5 +1,6 @@
 var express = require("express"),
     route = require("./route/route"),
+    route1 = require("./route/routePromise"),
     parser= require("body-parser"),
     app = express();
 
@@ -13,6 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(parser.json());
 app.use('/api/', route);
+app.use('/promise/', route1);
 
 
 app.listen(8000, () => {
