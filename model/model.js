@@ -11,6 +11,7 @@ const mySchema = new Schema({
 	
 	username: {type: String, required: true, max: 100},
     age: {type: Number, required: true},
+    date: {type: Date,default: Date.now()}
 });
 
 const MyModel = mongoose.model('MyModel', mySchema);
