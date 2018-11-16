@@ -9,5 +9,4 @@ router.get('/get/:id', responses.retrieve_one);
 router.put('/:id/update', responses.update_data);
 router.delete('/:id/delete', responses.delete_data);
 
-
 module.exports = router;
