@@ -12,7 +12,7 @@ exports.create_data = function (req, res) {
 
     response.save(function (err) {
         if (err) {
-            return next(err);
+            return console.err(err);
         }
         res.json({"message":"Product Created successfully"});
     })
@@ -20,7 +20,7 @@ exports.create_data = function (req, res) {
 
 
 //get all the database stored values
-exports.retrieve_all = function (req,res) {
+exports.retrieve_all = function (req, res) {
 
     Response.find(function (err, response) {
         if (err) {
