@@ -8,13 +8,10 @@ const mongoose = require('mongoose');
 let db_url = 'mongodb://rinju:nepal4321@ds024748.mlab.com:24748/mydb';
 let mongoDB = process.env.MONGODB_URI || db_url;
 mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use(parser.urlencoded({extended: false}));
 app.use(parser.json());
-
 app.use('/api/', route);
 
 
