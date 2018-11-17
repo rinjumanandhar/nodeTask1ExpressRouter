@@ -102,7 +102,7 @@ exports.update = (req, res) => {
 
 // Delete a note with the specified id in the request
 exports.delete = (req, res) => {
-    Note.patch(req.params.id)
+    Note.findByIdAndRemove(req.params.id)
     .then(note => {
         if(!note) {
             return res.status(404).send({
