@@ -1,6 +1,7 @@
 var express = require("express"),
     route = require("./route/route"),
-    route1 = require("./route/routePromise"),
+    promiseRoute = require("./route/routePromise"),
+    asyncRoute = require("./route/asyncRoute"),
     parser= require("body-parser"),
     app = express();
 
@@ -14,8 +15,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(parser.json());
 app.use('/api/', route);
-app.use('/promise/', route1);
-
+app.use('/promise/', promiseRoute);
+app.use('/async', asyncRoute);
 
 app.listen(8000, () => {
     console.log('Server is up and running');
